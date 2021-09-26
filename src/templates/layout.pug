@@ -1,0 +1,32 @@
+//- Mixins
+include mixin/mixin
+
+//- Variables
+block variables
+
+doctype html
+html(lang="ru")
+
+	//- Head
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="initial-scale=1.0, width=device-width")
+		meta(name="format-detection" content="telephone=no")
+		title= title
+		<!-- webpackIgnore: true -->
+		link(rel="shortcut icon" href="/favicon.svg")
+
+		block head
+
+	body
+		.wrapper
+			//- Header
+			include includes/global/header
+
+			//- Content
+			main.main
+				block content
+
+			//- Footer
+			include includes/global/footer
+			.overlay

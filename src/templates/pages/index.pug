@@ -1,0 +1,28 @@
+extends ../layout
+
+block variables
+	- var title = 'Главная страница';
+
+block content
+	section.section
+		.prompt
+			button(type="button" data-popup-id="popup-lang").btn.btn-promt Язык
+			.popup-prompt#popup-lang
+				button.btn-close.popup-close Закрыть
+				.b-lang-list
+					a(href="#").__item Русский
+					a(href="#").__item English
+
+		.over
+			button(type="button" data-popup-id="popup-content" data-popup-overlay="true").btn.btn-over Политика конфиденциальности
+			.popup-over#popup-content
+				button.btn-close.popup-close Закрыть
+				.confidentiality-policy
+					h2(style="margin-top: 0;") Политика конфиденциальности
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse hic nam necessitatibus, nobis provident sunt suscipit! Ab aliquid assumenda culpa doloribus est facere impedit iure natus officia, optio, reprehenderit sequi.
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque eveniet iure magnam possimus quae sapiente velit voluptatibus! Asperiores cupiditate eos est incidunt itaque porro quae quod voluptate voluptates voluptatum!
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse hic nam necessitatibus, nobis provident sunt suscipit! Ab aliquid assumenda culpa doloribus est facere impedit iure natus officia, optio, reprehenderit sequi.
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque eveniet iure magnam possimus quae sapiente velit voluptatibus! Asperiores cupiditate eos est incidunt itaque porro quae quod voluptate voluptates voluptatum!
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse hic nam necessitatibus, nobis provident sunt suscipit! Ab aliquid assumenda culpa doloribus est facere impedit iure natus officia, optio, reprehenderit sequi.
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque eveniet iure magnam possimus quae sapiente velit voluptatibus! Asperiores cupiditate eos est incidunt itaque porro quae quod voluptate voluptates voluptatum!
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur culpa mollitia nostrum optio quibusdam? Animi consectetur ducimus incidunt natus officiis possimus quasi ratione repudiandae tenetur ullam. Error maxime neque quasi!

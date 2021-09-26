@@ -1,0 +1,23 @@
+//Цвета
+$white: #ffffff;
+$black: #000000;
+$red: #da1010;
+$green: #3d893f;
+
+$whiteDark: #f7f7f7;
+
+//Тени
+$shadow-grey: 0px 4px 20px rgba(0, 0, 0, 0.07);
+
+//Шрифты
+$font: 'ProximaNova', sans-serif;
+
+//Брейкпоинты
+$mq_phone_small: 375;
+$mq_phone: 544; //0-575px
+$mq_tablet_portrait: 768; //576-767px
+$mq_tablet_landscape: 992; //768-991px
+$mq_desktop: 1180; //992-1200px
+
+//Ширина контейнера за счет динамических отступов
+$pd_desktop: 590; //1180px

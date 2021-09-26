@@ -1,0 +1,49 @@
+.btn {
+	padding: 10px 15px;
+	font-size: 14px;
+	line-height: 16px;
+	color: white;
+	background-color: darkseagreen;
+	border-radius: 5px;
+
+	&-close {
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		font-size: 0;
+		background-color: white;
+
+		&:hover {
+			&::before,
+			&::after {
+				background-color: crimson;
+			}
+		}
+
+		&::before {
+			content: '';
+			width: 1px;
+			height: 100%;
+			background-color: gray;
+			transform: rotateZ(-45deg);
+
+			position: absolute;
+			left: 50%;
+			top: 0;
+		}
+
+		&::after {
+			content: '';
+			width: 1px;
+			height: 100%;
+			background-color: gray;
+			transform: rotateZ(45deg);
+
+			position: absolute;
+			left: 50%;
+			top: 0;
+		}
+	}
+}
