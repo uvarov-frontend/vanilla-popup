@@ -11,18 +11,22 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PATHS = require('./paths');
 
 const RULES = [];
-fs.readdirSync(PATHS.rules).filter((filename) => RULES.push(require(`${PATHS.rules}/${filename}`)));
+fs.readdirSync(PATHS.rules.pages).filter((filename) => RULES.push(require(`${PATHS.rules.pages}/${filename}`)));
 
 const PAGES_ENTRY = {};
-const PAGES_DIR = `${PATHS.src}/${PATHS.assets.templates}/${PATHS.assets.pages}`;
+PAGES_ENTRY.main = `${PATHS.src}/${PATHS.rules.global}`;
 
-PAGES_ENTRY.main = `${PATHS.src}/main.js`;
+const PAGES_DIR = `${PATHS.src}/${PATHS.assets.templates}/${PATHS.assets.pages}`;
 
 const PAGES = fs.readdirSync(PAGES_DIR).filter((filename) => {
 	if (filename.endsWith('.pug') || filename.endsWith('.twig') || filename.endsWith('.html')) {
 		const PAGE_EXT = `.${filename.split('.').pop()}`;
 		filename = filename.replace(PAGE_EXT, '').replace('.html', '');
-		PAGES_ENTRY[filename.replace(PAGE_EXT, '')] = `${PATHS.src}/${PATHS.assets.pages}/${filename.replace(PAGE_EXT, '')}.js`;
+
+		PAGES_ENTRY[filename.replace(PAGE_EXT, '')] = {
+			dependOn: PATHS.rules.global.replace('.js', ''),
+			import: `${PATHS.src}/${PATHS.assets.pages}/${filename.replace(PAGE_EXT, '')}.js`,
+		};
 		return filename;
 	}
 	return false;
@@ -75,6 +79,7 @@ module.exports = {
 					template: `${PAGES_DIR}/${page}`,
 					filename: `./${PAGE_NAME}.html`,
 					chunks: ['main', `${PAGE_NAME}`],
+					cache: true,
 					scriptLoading: 'blocking',
 					base: '/',
 				});
