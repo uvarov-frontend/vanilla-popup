@@ -1,10 +1,16 @@
 .btn {
+	display: block;
+	width: 100%;
 	padding: 10px 15px;
 	font-size: 14px;
 	line-height: 16px;
 	color: white;
-	background-color: darkseagreen;
+	background-color: dodgerblue;
 	border-radius: 5px;
+
+	&:hover {
+		background-color: steelblue;
+	}
 
 	&-close {
 		width: 10px;

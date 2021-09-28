@@ -49,7 +49,7 @@ class Popup {
 	}
 
 	hasPopup(btn) {
-		const hasPopupNext = btn.nextElementSibling.id === btn.dataset.popupId;
+		const hasPopupNext = btn.nextElementSibling?.id === btn.dataset.popupId;
 		this.btn.el = btn;
 		this.popup.el = hasPopupNext ? btn.nextElementSibling : document.getElementById(btn.dataset.popupId);
 
@@ -66,10 +66,12 @@ class Popup {
 			const hasBtn = element.classList.contains(this.btn.classDefault);
 			const hasAttr = element.dataset.popupId;
 
-			if (this.popup.show) {
+			if (this.popup.show && hasBtn && hasAttr !== this.popup.active.id) {
 				this.closePopup(element);
-			} else {
-				if (!hasBtn && !hasAttr) return;
+				this.hasPopup(element);
+			} else if (this.popup.show) {
+				this.closePopup(element);
+			} else if (hasBtn && hasAttr) {
 				this.hasPopup(element);
 			}
 		});
