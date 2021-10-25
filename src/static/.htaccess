@@ -1,22 +1,10 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
-
-#RewriteEngine on
+RewriteEngine on
+###INDEX
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.(php|html|htm)\ HTTP/
+RewriteRule ^(.*)index\.(php|html|htm)$ http://%{HTTP_HOST}/$1 [R=301,L]
 ###WWW
 RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 ###HTTPS
 #RewriteCond %{ENV:HTTPS} !on
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-###INDEX
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.(php|html|htm)\ HTTP/
-RewriteRule ^(.*)index\.(php|html|htm)$ $1 [R=301,L]
-###Другое
-#RewriteCond %{HTTP_HOST} ^sub.site.ru$
-#RewriteRule ^(.*)$ https://sub.site.ru/$1 [R=301,L]
