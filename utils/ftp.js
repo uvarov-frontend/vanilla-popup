@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const FtpDeploy = require('ftp-deploy');
 const ftpData = require('../.ftpdata');
 

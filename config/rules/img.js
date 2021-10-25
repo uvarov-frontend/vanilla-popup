@@ -9,5 +9,5 @@ module.exports = {
 	loader: 'image-webpack-loader',
 	options: {
 		disable: !isProd,
-	}
+	},
 };

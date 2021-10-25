@@ -1,7 +1,5 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
-/* eslint-disable quote-props */
-/* eslint-disable import/no-extraneous-dependencies */
 
 const fs = require('fs');
 const { VueLoaderPlugin } = require('vue-loader');
@@ -88,10 +86,10 @@ module.exports = {
 			},
 		),
 		new HtmlReplaceWebpackPlugin([
-      {
-        pattern: / data-src="[^"]+"/g,
-        replacement: ''
-      },
-    ])
+			{
+				pattern: / data-src="[^"]+"/g,
+				replacement: '',
+			},
+		]),
 	],
 };
