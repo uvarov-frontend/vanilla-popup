@@ -4,8 +4,6 @@ const { merge } = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlBeautifyPlugin = require('@nurminen/html-beautify-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const TinyimgPlugin = require('tinyimg-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -15,6 +13,10 @@ module.exports = merge(common, {
 	devtool: false,
 	output: {
 		filename: `${common.externals.paths.assets.js}/[name].[contenthash:6].js`,
+	},
+	performance: {
+		maxEntrypointSize: 1024000,
+		maxAssetSize: 1024000,
 	},
 	optimization: {
 		minimize: true,
@@ -51,18 +53,6 @@ module.exports = merge(common, {
 				},
 			},
 			replace: ['type="text/javascript"'],
-		}),
-		new ImageMinimizerPlugin({
-			minimizerOptions: {
-				cache: true,
-				plugins: [
-					['imagemin-svgo'],
-				],
-			},
-		}),
-		new TinyimgPlugin({
-			enabled: true,
-			logged: true,
 		}),
 	],
 });

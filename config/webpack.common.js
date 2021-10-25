@@ -6,7 +6,9 @@
 const fs = require('fs');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlReplaceWebpackPlugin = require('html-replace-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 const PATHS = require('./paths');
 
@@ -45,8 +47,7 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			'~': PATHS.src,
-			img: `${PATHS.src}/${PATHS.assets.img}`,
+			'@': PATHS.src,
 		},
 	},
 	optimization: {
@@ -65,6 +66,7 @@ module.exports = {
 		rules: RULES,
 	},
 	plugins: [
+		new CaseSensitivePathsPlugin(),
 		new VueLoaderPlugin(),
 		new CopyWebpackPlugin({
 			patterns: [{
@@ -85,5 +87,11 @@ module.exports = {
 				});
 			},
 		),
+		new HtmlReplaceWebpackPlugin([
+      {
+        pattern: / data-src="[^"]+"/g,
+        replacement: ''
+      },
+    ])
 	],
 };
