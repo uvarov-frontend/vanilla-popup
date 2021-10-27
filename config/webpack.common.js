@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlReplaceWebpackPlugin = require('html-replace-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const PATHS = require('./paths');
 
@@ -91,5 +92,6 @@ module.exports = {
 				replacement: '',
 			},
 		]),
+		new ProgressBarPlugin(),
 	],
 };
