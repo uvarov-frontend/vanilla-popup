@@ -5,6 +5,7 @@ class Popup {
 			btn: undefined,
 			popup: undefined,
 			overlay: undefined,
+			iframe: undefined,
 		};
 
 		this.status = {
@@ -24,12 +25,22 @@ class Popup {
 			},
 			popup: {
 				show: option?.class?.popup?.show || 'popup-show',
+				iframe: option?.class?.popup?.iframe || 'popup-iframe',
 			},
 			overlay: {
 				default: option?.class?.overlay?.default || 'overlay',
 				active: option?.class?.overlay?.active || 'overlay_show',
 			},
 		};
+	}
+
+	createIframe(src) {
+		this.iframe = this.element.popup.querySelector(`.${this.class.popup.iframe}`);
+		const iframe = document.createElement('iframe');
+		iframe.allow = 'fullscreen';
+		iframe.src = src;
+
+		this.iframe.append(iframe);
 	}
 
 	hasOverlay() {
@@ -49,6 +60,7 @@ class Popup {
 			this.status.popup.active.classList.remove(this.class.popup.show);
 			this.status.popup.show = false;
 			if (this.hasOverlay()) this.element.overlay.classList.remove(this.class.overlay.active);
+			if (this.iframe) this.iframe.innerHTML = '';
 		}
 	}
 
@@ -69,6 +81,8 @@ class Popup {
 			console.error(`Not found: #${btn.dataset.popupId}`);
 			return;
 		}
+
+		if (this.element.btn.dataset.popupSrc) this.createIframe(this.element.btn.dataset.popupSrc);
 		this.openPopup();
 	}
 

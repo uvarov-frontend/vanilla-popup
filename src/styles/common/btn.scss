@@ -16,10 +16,10 @@
 		width: 10px;
 		height: 10px;
 		position: absolute;
+		z-index: 2;
 		right: 10px;
 		top: 10px;
 		font-size: 0;
-		background-color: white;
 
 		&:hover {
 			&::before,
