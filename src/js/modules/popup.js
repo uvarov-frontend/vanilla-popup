@@ -1,59 +1,71 @@
 /* eslint-disable no-console */
 class Popup {
 	constructor(option) {
-		this.btn = {
-			classDefault: option.btn.classDefault,
-			classClose: option.btn.classClose,
-			el: undefined,
+		this.element = {
+			btn: undefined,
+			popup: undefined,
+			overlay: undefined,
 		};
-		this.popup = {
-			classShow: option.popup.classShow,
-			show: false,
-			active: undefined,
-			el: undefined,
+
+		this.status = {
+			popup: {
+				show: false,
+				active: undefined,
+			},
+			overlay: {
+				enabled: undefined,
+			},
 		};
-		this.overlay = {
-			classDefault: option.overlay.classDefault,
-			classActive: option.overlay.classActive,
-			enabled: undefined,
-			el: undefined,
+
+		this.class = {
+			btn: {
+				default: option?.class?.btn?.default || 'btn',
+				close: option?.class?.btn?.close || 'popup-close',
+			},
+			popup: {
+				show: option?.class?.popup?.show || 'popup-show',
+			},
+			overlay: {
+				default: option?.class?.overlay?.default || 'overlay',
+				active: option?.class?.overlay?.active || 'overlay_show',
+			},
 		};
 	}
 
 	hasOverlay() {
-		this.overlay.enabled = this.btn.el.dataset.popupOverlay === 'true';
-		if (this.overlay.enabled) {
-			this.overlay.el = document.querySelector(`.${this.overlay.classDefault}`);
+		this.status.overlay.enabled = this.element.btn.dataset.popupOverlay === 'true';
+		if (this.status.overlay.enabled) {
+			this.element.overlay = document.querySelector(`.${this.class.overlay.default}`);
 		}
-		return this.overlay.enabled && this.overlay.el;
+		return this.status.overlay.enabled && this.element.overlay;
 	}
 
 	closePopup(element) {
-		const close = element.classList.contains(this.btn.classClose);
-		if (!this.popup.active) this.popup.active = document.querySelector('.popup-show');
-		const popup = element.closest(`#${this.popup.active.id}`);
+		const close = element.classList.contains(this.class.btn.close);
+		if (!this.status.popup.active) this.status.popup.active = document.querySelector(`.${this.class.popup.show}`);
+		const popup = element.closest(`#${this.status.popup.active.id}`);
 
 		if (close || !popup) {
-			this.popup.active.classList.remove('popup-show');
-			this.popup.show = false;
-			if (this.hasOverlay()) this.overlay.el.classList.remove(this.overlay.classActive);
+			this.status.popup.active.classList.remove(this.class.popup.show);
+			this.status.popup.show = false;
+			if (this.hasOverlay()) this.element.overlay.classList.remove(this.class.overlay.active);
 		}
 	}
 
 	openPopup() {
-		if (this.hasOverlay()) this.overlay.el.classList.add(this.overlay.classActive);
+		if (this.hasOverlay()) this.element.overlay.classList.add(this.class.overlay.active);
 
-		this.popup.el.classList.add(this.popup.classShow);
-		this.popup.active = this.popup.el;
-		this.popup.show = true;
+		this.element.popup.classList.add(this.class.popup.show);
+		this.status.popup.active = this.element.popup;
+		this.status.popup.show = true;
 	}
 
 	hasPopup(btn) {
 		const hasPopupNext = btn.nextElementSibling?.id === btn.dataset.popupId;
-		this.btn.el = btn;
-		this.popup.el = hasPopupNext ? btn.nextElementSibling : document.getElementById(btn.dataset.popupId);
+		this.element.btn = btn;
+		this.element.popup = hasPopupNext ? btn.nextElementSibling : document.getElementById(btn.dataset.popupId);
 
-		if (!this.popup.el) {
+		if (!this.element.popup) {
 			console.error(`Not found: #${btn.dataset.popupId}`);
 			return;
 		}
@@ -63,13 +75,13 @@ class Popup {
 	hasClick() {
 		document.addEventListener('click', (e) => {
 			const element = e.target;
-			const hasBtn = element.classList.contains(this.btn.classDefault);
+			const hasBtn = element.classList.contains(this.class.btn.default);
 			const hasAttr = element.dataset.popupId;
 
-			if (this.popup.show && hasBtn && hasAttr !== this.popup.active.id) {
+			if (this.status.popup.show && hasBtn && hasAttr !== this.status.popup.active.id) {
 				this.closePopup(element);
 				this.hasPopup(element);
-			} else if (this.popup.show) {
+			} else if (this.status.popup.show) {
 				this.closePopup(element);
 			} else if (hasBtn && hasAttr) {
 				this.hasPopup(element);
