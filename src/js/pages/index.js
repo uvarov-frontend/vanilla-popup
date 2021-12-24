@@ -1,4 +1,4 @@
-import Popup from '../modules/popup';
+import Popup from '@/js/modules/popup';
 
 const popup = new Popup();
 
