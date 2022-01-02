@@ -1,8 +1,8 @@
 const FtpDeploy = require('ftp-deploy');
-const ftpData = require('../.ftpdata');
+const ftp = require('../.ftp');
 
 /**
-// Шаблон файла .ftpdata
+// Шаблон файла .ftp
 module.exports = {
   user: '',
   password: '',
@@ -13,11 +13,11 @@ module.exports = {
  */
 
 new FtpDeploy().deploy({
-	user: ftpData.user,
-	password: ftpData.password,
-	host: ftpData.host,
-	port: ftpData.port,
-	remoteRoot: ftpData.root,
+	user: ftp.user,
+	password: ftp.password,
+	host: ftp.host,
+	port: ftp.port,
+	remoteRoot: ftp.root,
 	localRoot: `${__dirname}/../build`,
 	include: ['.*', '*', '**/*'],
 	exclude: ['.DS_Store'],

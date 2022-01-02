@@ -1,5 +1,7 @@
 .footer {
+	position: relative;
+	z-index: 2;
   grid-area: footer;
-  height: 70px;
-  background: white;
+  height: 130px;
+  background: $white-dark;
 }

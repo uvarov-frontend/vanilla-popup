@@ -1,5 +1,8 @@
 .header {
+	position: relative;
+	z-index: 3;
   grid-area: header;
+	@include container();
   height: 70px;
-  background: white;
+  background: $white-dark;
 }

@@ -1,0 +1,40 @@
+body {
+  background-color: $white-dark;
+}
+
+.header {
+	z-index: auto;
+}
+
+.footer {
+	z-index: auto;
+}
+
+.main-wrapper {
+	z-index: auto;
+	padding: 40px 0 0;
+}
+
+.main-content {
+	align-items: center;
+
+	p {
+		margin: 0;
+	}
+}
+
+.relative {
+	position: relative;
+}
+
+.grid {
+	display: grid;
+	gap: 10px;
+	justify-content: center;
+}
+
+.section {
+	h2, h3 {
+		text-align: center;
+	}
+}

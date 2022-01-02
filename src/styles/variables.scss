@@ -1,12 +1,20 @@
+//Цвета
+$white: #ffffff;
+$black: #000000;
+$red: #da1010;
+$green: #3d893f;
+
+$white-dark: #f7f7f7;
+
 //Шрифты
 $font: 'ProximaNova', sans-serif;
 
 //Брейкпоинты
-$mq_phone_small: 375;
-$mq_phone: 544; //0-575px
-$mq_tablet_portrait: 768; //576-767px
-$mq_tablet_landscape: 992; //768-991px
-$mq_desktop: 1180; //992-1200px
+$mq_phone_small: 375; //320-374px
+$mq_phone_big: 544; //376-543px
+$mq_tablet_small: 768; //544-767px
+$mq_tablet_big: 992; //768-991px
+$mq_desktop: 1200; //992-1199px
 
 //Ширина контейнера за счет динамических отступов
 $pd_desktop: 590; //1180px

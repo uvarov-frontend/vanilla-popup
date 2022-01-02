@@ -14,9 +14,9 @@
 @mixin mq($width, $type: max) {
   $breakpoints: (
     'phone_small': $mq_phone_small,
-    'phone': $mq_phone,
-    'tablet_portrait': $mq_tablet_portrait,
-    'tablet_landscape': $mq_tablet_landscape,
+    'phone_big': $mq_phone_big,
+    'tablet_small': $mq_tablet_small,
+    'tablet_big': $mq_tablet_big,
     'desktop': $mq_desktop,
   );
 

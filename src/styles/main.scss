@@ -1,9 +1,10 @@
-@import 'normalize.css';
-@import './global/basic.scss';
-@import './global/fonts.scss';
-@import './global/header.scss';
-@import './global/footer.scss';
-@import './common/**/*.scss';
+@import '~normalize.css';
+@import '@/styles/global/basic.scss';
+@import '@/styles/global/fonts.scss';
+@import '@/styles/global/header.scss';
+@import '@/styles/global/footer.scss';
+@import '@/styles/global/wrapper.scss';
+@import '@/styles/common/**/*.scss';
 
-@import './includes/components/popup.scss';
+@import '@/styles/components/popup.scss';
 

@@ -20,11 +20,11 @@ class Popup {
 
 		this.class = {
 			btn: {
-				default: option?.class?.btn?.default || 'btn',
+				default: option?.class?.btn?.default || 'popup-btn',
+				show: option?.class?.btn?.default || 'popup-btn_show',
 				close: option?.class?.btn?.close || 'popup-close',
 			},
 			popup: {
-				show: option?.class?.popup?.show || 'popup-show',
 				iframe: option?.class?.popup?.iframe || 'popup-iframe',
 			},
 			overlay: {
@@ -57,7 +57,8 @@ class Popup {
 		const popup = element.closest(`#${this.status.popup.active.id}`);
 
 		if (close || !popup) {
-			this.status.popup.active.classList.remove(this.class.popup.show);
+			this.element.btn.classList.remove(this.class.btn.show);
+			this.element.popup.removeAttribute('open');
 			this.status.popup.show = false;
 			if (this.hasOverlay()) this.element.overlay.classList.remove(this.class.overlay.active);
 			if (this.iframe) this.iframe.innerHTML = '';
@@ -67,7 +68,8 @@ class Popup {
 	openPopup() {
 		if (this.hasOverlay()) this.element.overlay.classList.add(this.class.overlay.active);
 
-		this.element.popup.classList.add(this.class.popup.show);
+		this.element.btn.classList.add(this.class.btn.show);
+		this.element.popup.setAttribute('open', '');
 		this.status.popup.active = this.element.popup;
 		this.status.popup.show = true;
 	}

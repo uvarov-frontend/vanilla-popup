@@ -1,7 +1,5 @@
-//- Mixins
-include mixin/mixin
-
 //- Variables
+- var sidebar = true;
 block variables
 
 doctype html
@@ -10,12 +8,9 @@ html(lang="ru-RU")
 	//- Head
 	head
 		meta(charset="UTF-8")
-		meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0")
+		meta(name="viewport" content="initial-scale=1.0, width=device-width")
 		meta(name="format-detection" content="telephone=no")
-		meta(name="keywords" content="#")
-		meta(name="description" content="#")
 		title= title
-
 		<!-- webpackIgnore: true -->
 		link(rel="shortcut icon" href="/favicon.svg")
 
@@ -24,12 +19,16 @@ html(lang="ru-RU")
 	body
 		.wrapper
 			//- Header
-			//- include includes/global/header
+			//- include global/header
 
 			//- Content
-			main.main
-				block content
+			.main-wrapper(class=`${sidebar ? '' : 'main-wrapper_no-sidebar'}`)
+				main.main-content
+					block content
+				if sidebar
+					aside.main-sidebar
+						block sidebar
 
 			//- Footer
-			//- include includes/global/footer
+			//- include global/footer
 			.overlay
