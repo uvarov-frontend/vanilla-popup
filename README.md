@@ -1,9 +1,3 @@
-# Webpack 5 VUE SCSS PUG TWIG HTML
+# Vanilla JS Popup
 
-## License
-
-MIT License
-
-## Author
-
-Yuri Uvarov (*uvarov.frontend@gmail.com*)
+Demo: https://vanilla-popup.frontend.uvarov.tech/
